@@ -1,0 +1,50 @@
+   
+            <mat-form-field>
+                <input matInput [matDatepicker]="startDate" placeholder="Choose start date" formControlName="startDateInput">
+                <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                <mat-datepicker #startDate></mat-datepicker>
+            </mat-form-field>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field >
+                <input matInput [matDatepicker]="endDate" placeholder="Choose end date"  formControlName="endDateInput">
+                <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                <mat-datepicker #endDate></mat-datepicker>
+            </mat-form-field>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button  type="submit" mat-button color="primary" (click)="defaultReport()">Search</button>
+       
+            <mat-divider></mat-divider>
+
+            <mat-card>       
+                    <mat-table [dataSource]="dataSource">
+                      <ng-container matColumnDef="loginDate">
+                        <mat-header-cell *matHeaderCellDef> LoginDate </mat-header-cell>
+                        <mat-cell *matCellDef="let userSession"> {{userSession.loginDate}} </mat-cell>
+                      </ng-container>
+                      <ng-container matColumnDef="teacherLogin">
+                        <mat-header-cell *matHeaderCellDef> TeacherLogin- Realize</mat-header-cell>
+                        <mat-cell *matCellDef="let userSession" > {{userSession.TeacherLogin}} </mat-cell>
+                      </ng-container>
+                     
+                      <ng-container matColumnDef="studentLogin">
+                            <mat-header-cell *matHeaderCellDef> StudedntLogin- Realize</mat-header-cell>
+                            <mat-cell *matCellDef="let userSession" > {{userSession.StudentLogin}} </mat-cell>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="adminLogin">
+                                <mat-header-cell *matHeaderCellDef> AdminLogin- Realize</mat-header-cell>
+                                <mat-cell *matCellDef="let userSession" > {{userSession.AdminLogin}} </mat-cell>
+                              </ng-container>
+
+                          <ng-container matColumnDef="platformLoginTotal">
+                                    <mat-header-cell *matHeaderCellDef> Platform Total- Realize</mat-header-cell>
+                                    <mat-cell *matCellDef="let userSession" > {{userSession.TeacherLogin+userSession.StudentLogin+userSession.AdminLogin}} </mat-cell>
+                           </ng-container>
+
+
+                      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+                    </mat-table>
+            </mat-card> 
+

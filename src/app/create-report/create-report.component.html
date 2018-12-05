@@ -1,0 +1,84 @@
+
+
+<div class="example-container">
+  <h2 >Daily login Chart - Fields</h2>
+
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="fields"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of fields" cdkDrag>{{item.field}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Selected Fields</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="selected"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of selected" cdkDrag>{{item.field}}</div>
+  </div>
+</div>
+
+    <div>
+            <button  type="submit" mat-button color="primary" (click)="generateReport()">Generate Report</button>
+    </div>
+
+    <mat-card>       
+        <mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="loginDate">
+            <mat-header-cell *matHeaderCellDef> LoginDate </mat-header-cell>
+            <mat-cell *matCellDef="let userSession"> {{userSession.loginDate}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="teacherLogin">
+            <mat-header-cell *matHeaderCellDef> TeacherLogin- Realize</mat-header-cell>
+            <mat-cell *matCellDef="let userSession" > {{userSession.TeacherLogin}} </mat-cell>
+          </ng-container>
+         
+          <ng-container matColumnDef="studentLogin">
+                <mat-header-cell *matHeaderCellDef> StudedntLogin- Realize</mat-header-cell>
+                <mat-cell *matCellDef="let userSession" > {{userSession.StudentLogin}} </mat-cell>
+              </ng-container>
+            
+              <ng-container matColumnDef="adminLogin">
+                    <mat-header-cell *matHeaderCellDef> AdminLogin- Realize</mat-header-cell>
+                    <mat-cell *matCellDef="let userSession" > {{userSession.AdminLogin}} </mat-cell>
+                  </ng-container>
+
+              <ng-container matColumnDef="platformLoginTotal">
+                        <mat-header-cell *matHeaderCellDef> Platform Total- Realize</mat-header-cell>
+                        <mat-cell *matCellDef="let userSession" > {{userSession.TeacherLogin+userSession.StudentLogin+userSession.AdminLogin}} </mat-cell>
+               </ng-container>
+
+               <ng-container matColumnDef="teacherLoginpsn">
+                  <mat-header-cell *matHeaderCellDef> TeacherLogin- Psn</mat-header-cell>
+                  <mat-cell *matCellDef="let userSession" > {{userSession.TeacherLogin}} </mat-cell>
+                </ng-container>
+               
+                <ng-container matColumnDef="studentLoginpsn">
+                      <mat-header-cell *matHeaderCellDef> StudedntLogin- Psn</mat-header-cell>
+                      <mat-cell *matCellDef="let userSession" > {{userSession.StudentLogin}} </mat-cell>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="adminLoginpsn">
+                          <mat-header-cell *matHeaderCellDef> AdminLogin- Psn</mat-header-cell>
+                          <mat-cell *matCellDef="let userSession" > {{userSession.AdminLogin}} </mat-cell>
+                    </ng-container>
+
+               <ng-container matColumnDef="platformLoginTotalpsn">
+                  <mat-header-cell *matHeaderCellDef> Platform Total- Psn</mat-header-cell>
+                  <mat-cell *matCellDef="let userSession" > {{userSession.TeacherLogin+userSession.StudentLogin+userSession.AdminLogin}} </mat-cell>
+         </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+        </mat-table>
+</mat-card> 
